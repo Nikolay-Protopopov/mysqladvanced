@@ -38,7 +38,7 @@
 город нахождения магазина;
 количество пользователей, закреплённых в этом магазине.
 
-#SELECT
+""SELECT
     s.first_name,
     s.last_name,
     c.city,
@@ -56,7 +56,7 @@ GROUP BY
     st.store_id,
     s.staff_id,
     c.city
-HAVING COUNT(cu.customer_id) > 300;
+HAVING COUNT(cu.customer_id) > 300;""
 
 ![Task1](screenshots/mysql.png)
 
