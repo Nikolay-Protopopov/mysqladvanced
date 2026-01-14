@@ -57,6 +57,7 @@ GROUP BY
     s.staff_id,
     c.city
 HAVING COUNT(cu.customer_id) > 300;
+
 ![Task1](screenshots/mysql.png)
 
 ### Задание 2
@@ -68,6 +69,7 @@ WHERE length > (
     SELECT AVG(length)
     FROM film
 );
+
 ![Task1](screenshots/mysql2.png)
 ### Задание 3
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
@@ -82,6 +84,7 @@ JOIN rental r
 GROUP BY month
 ORDER BY total_payments DESC
 LIMIT 1;
+
 ![Task1](screenshots/mysql3.png)
 ### Задание 4
 Посчитайте количество продаж, выполненных каждым продавцом. Добавьте вычисляемую колонку «Премия». Если количество продаж превышает 8000, то значение в колонке будет «Да», иначе должно быть значение «Нет».
@@ -112,4 +115,5 @@ WHERE NOT EXISTS (
     JOIN rental r ON i.inventory_id = r.inventory_id
     WHERE i.film_id = f.film_id
 );
+
 ![Task1](screenshots/mysql5.png)
