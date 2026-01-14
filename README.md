@@ -63,18 +63,18 @@ HAVING COUNT(cu.customer_id) > 300;</pre>
 ### Задание 2
 Получите количество фильмов, продолжительность которых больше средней продолжительности всех фильмов.
 
-SELECT COUNT(*) AS films_count
+<pre>SELECT COUNT(*) AS films_count
 FROM film
 WHERE length > (
     SELECT AVG(length)
     FROM film
-);
+);</pre>
 
 ![Task1](screenshots/mysql2.png)
 ### Задание 3
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
 
-SELECT
+<pre>SELECT
     DATE_FORMAT(p.payment_date, '%Y-%m') AS month,
     SUM(p.amount) AS total_payments,
     COUNT(DISTINCT r.rental_id) AS rentals_count
@@ -83,13 +83,13 @@ JOIN rental r
     ON r.rental_id = p.rental_id
 GROUP BY month
 ORDER BY total_payments DESC
-LIMIT 1;
+LIMIT 1;</pre>
 
 ![Task1](screenshots/mysql3.png)
 ### Задание 4
 Посчитайте количество продаж, выполненных каждым продавцом. Добавьте вычисляемую колонку «Премия». Если количество продаж превышает 8000, то значение в колонке будет «Да», иначе должно быть значение «Нет».
 
-SELECT
+<pre>SELECT
     s.first_name,
     s.last_name,
     COUNT(p.payment_id) AS sales_count,
@@ -101,19 +101,19 @@ FROM staff s
 JOIN payment p
     ON s.staff_id = p.staff_id
 GROUP BY s.staff_id, s.first_name, s.last_name
-ORDER BY sales_count DESC;
+ORDER BY sales_count DESC;</pre>
 
 ![Task1](screenshots/mysql4.png)
 ### Задание 5
 Найдите фильмы, которые ни разу не брали в аренду.
 
-SELECT f.film_id, f.title
+<pre>SELECT f.film_id, f.title
 FROM film f
 WHERE NOT EXISTS (
     SELECT 1
     FROM inventory i
     JOIN rental r ON i.inventory_id = r.inventory_id
     WHERE i.film_id = f.film_id
-);
+);</pre>
 
 ![Task1](screenshots/mysql5.png)
